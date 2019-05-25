@@ -2,6 +2,7 @@ package com.raisin.steps;
 
 import com.raisin.framework.ParentScenario;
 
+import cucumber.api.java.After;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 
@@ -16,5 +17,11 @@ public class Steps extends ParentScenario {
 	public void navigateToSomeUrlInTheMobileWeb(String url) {
 		System.out.println("Navigate to the url: " + url);
 		navigateTo(url);
+	}
+
+	@After
+	public void afterTestClass() {
+		System.out.println("closing the driver");
+		driver.close();
 	}
 }

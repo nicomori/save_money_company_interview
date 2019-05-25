@@ -9,6 +9,8 @@ import com.raisin.pages.OurOffersPage;
 import com.raisin.steps.StepsHelper;
 import com.raisin.util.SelectorBrowser;
 
+import cucumber.api.java.After;
+
 /**
  * This Class is created for make a helper for all the pages, and all the parts
  * of the a native app, or for execute all the drivers. And for create all the
@@ -44,4 +46,7 @@ public class ParentScenario extends StepsHelper {
 	public void closeDriver() {
 		driver.quit();
 	}
+	
+	
+	
 }

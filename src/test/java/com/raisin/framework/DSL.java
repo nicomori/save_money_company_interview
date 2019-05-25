@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -25,6 +26,20 @@ public abstract class DSL {
 	}
 
 	/**
+	 * this method make a mouse over from a web element to other locator, and make
+	 * click in the second element.
+	 *
+	 * @param first web element locator
+	 * @param second web element locator
+	 */
+	protected void mouseOverAndClick(By firstLocator, By secondLocator) {
+		waitForAnExplicitElement(firstLocator);
+		Actions action = new Actions(driver);
+		WebElement we = driver.findElement(firstLocator);
+		action.moveToElement(we).moveToElement(driver.findElement(secondLocator)).click().build().perform();
+	}
+
+	/**
 	 * this method make a javascript click
 	 *
 	 * @param locator
@@ -35,18 +50,17 @@ public abstract class DSL {
 		JavascriptExecutor executor = (JavascriptExecutor) driver;
 		executor.executeScript("arguments[0].click();", element);
 	}
-	
+
 	/**
 	 * This method select options from a list.
 	 * 
-	 * @param locator,
-	 *            string to send
+	 * @param locator, string to send
 	 */
 	protected void selectOptionByString(By locator, String identifier) {
 		Select dropdown = new Select(driver.findElement(locator));
 		dropdown.selectByVisibleText(identifier);
 	}
-	
+
 	/**
 	 * this method make a double javascript click
 	 * 
@@ -64,7 +78,7 @@ public abstract class DSL {
 			executor.executeScript("arguments[0].click();", element);
 		}
 	}
-	
+
 	/**
 	 * this method return the string valur from some locator
 	 * 
